@@ -24,9 +24,16 @@ int LiczenieSredniej (int rozmiar, int tablica[rozmiar])
 	int suma=0;
 	for (int i=0; i<rozmiar; i++)
 	{
-		suma+=tablica[i];
+		suma += tablica[i];
 	}
 	return suma/10;
+}
+
+void ZamianaKomorekWsortowaniu (int* tablica1, int* tablica2)
+{
+	int temp = *tablica1;
+	*tablica1 = *tablica2;
+	*tablica2 = temp;
 }
 
 void SortowanieTablicy (int rozmiar, int tablica[rozmiar])
@@ -37,9 +44,9 @@ void SortowanieTablicy (int rozmiar, int tablica[rozmiar])
 		{
 			if (tablica[i]<tablica[j])
 			{
-				int temp=tablica[i];
-				tablica[i]=tablica[j];
-				tablica[j]=temp;
+				int* wskaznikNaElement1 = &tablica[i];
+				int* wskaznikNaElement2 = &tablica[j];
+				ZamianaKomorekWsortowaniu(wskaznikNaElement1, wskaznikNaElement2);
 			}
 		}
 	}
@@ -47,23 +54,23 @@ void SortowanieTablicy (int rozmiar, int tablica[rozmiar])
 
 int Mediana (int rozmiar, int tablica[rozmiar])
 {
-	SortowanieTablicy (rozmiar, tablica);
+	SortowanieTablicy(rozmiar, tablica);
 	return (tablica[4]+tablica[5])/2;
 }
 
 int MinimalnaWartosc (int rozmiar, int tablica[rozmiar])
 {
-	SortowanieTablicy (rozmiar, tablica);
+	SortowanieTablicy(rozmiar, tablica);
 	return tablica [0];
 }
 
 int MaksymalnaWartosc (int rozmiar, int tablica[rozmiar])
 {
-	SortowanieTablicy (rozmiar, tablica);
+	SortowanieTablicy(rozmiar, tablica);
 	return tablica [rozmiar-1];
 }
 
-void Sprawdzenie (int rozmiar, int tablica[rozmiar])
+void SprawdzenieCzyWylosowanoTablice (int rozmiar, int tablica[rozmiar])
 {
 	int temp=0;
 	for (int i=0; i<rozmiar; i++)
@@ -79,11 +86,17 @@ void Sprawdzenie (int rozmiar, int tablica[rozmiar])
 int main (void)
 {
 	srand(time(NULL));
-	int wybor, tablica[10]={0,0,0,0,0,0,0,0,0,0}, srednia, wartoscMaksymalna, wartoscMinimalna, mediana;
-	int rozmiar = 10;
+	int wybor, tablica[]={0,0,0,0,0,0,0,0,0,0}, srednia, wartoscMaksymalna, wartoscMinimalna, mediana;
+	int rozmiar = sizeof(tablica);
 	while (wybor!= 6)
 	{
-		printf("Co chcesz zrobic? \n1-Wylosowac tablice \n2-Wyswietlic tablice \n3-Obliczyc srednia wartosc elementow tablicy\n4-Obliczyc mediane\n5-Obliczyc wartosc minimalna i maksymalna\n6-Zakonczyc dzialanie programu\n");
+		printf("Co chcesz zrobic? \n"
+			"1-Wylosowac tablice \n"
+			"2-Wyswietlic tablice \n"
+			"3-Obliczyc srednia wartosc elementow tablicy\n"
+			"4-Obliczyc mediane\n"
+			"5-Obliczyc wartosc minimalna i maksymalna\n"
+			"6-Zakonczyc dzialanie programu\n");
 		scanf ("%d", &wybor);
 		switch (wybor)
 		{
@@ -91,23 +104,23 @@ int main (void)
 				LosujTablice(rozmiar, tablica);
 				break;
 			case 2:
-				Sprawdzenie(rozmiar,tablica);
+				SprawdzenieCzyWylosowanoTablice(rozmiar,tablica);
 				WyswietlTablice(rozmiar,tablica);
 				break;
 			case 3:
-				Sprawdzenie(rozmiar,tablica);
-				srednia=LiczenieSredniej(rozmiar,tablica);
+				SprawdzenieCzyWylosowanoTablice(rozmiar,tablica);
+				srednia = LiczenieSredniej(rozmiar,tablica);
 				printf("%d\n", srednia);
 				break;
 			case 4:
-				Sprawdzenie(rozmiar,tablica);
-				mediana=Mediana(rozmiar,tablica);
+				SprawdzenieCzyWylosowanoTablice(rozmiar,tablica);
+				mediana = Mediana(rozmiar,tablica);
 				printf("%d\n", mediana);
 				break;
 			case 5:
-				Sprawdzenie(rozmiar,tablica);
-				wartoscMinimalna=MinimalnaWartosc (rozmiar,tablica);
-				wartoscMaksymalna=MaksymalnaWartosc (rozmiar,tablica);
+				SprawdzenieCzyWylosowanoTablice(rozmiar,tablica);
+				wartoscMinimalna = MinimalnaWartosc(rozmiar,tablica);
+				wartoscMaksymalna = MaksymalnaWartosc(rozmiar,tablica);
 				printf("maksimum = %d, minimum = %d\n", wartoscMaksymalna, wartoscMinimalna);
 				break;				
 		}	

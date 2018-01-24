@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <string.h>
 
-void WypisanieTekstu (char* tekst, ...)
+void WypisanieTekstu (const char* tekst, ...)
 {
 	int dlugoscTekstu = strlen(tekst);
 	va_list wszystkieArgumenty;

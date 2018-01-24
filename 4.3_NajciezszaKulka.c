@@ -35,12 +35,11 @@ void PorownanieKulek (int kulka[8])
 
 int main(void)
 {
-	int kulka[8];
+	int kulka[] = {0,0,0,0,0,0,0,0};
 	srand(time(0));
-	int losowaKulka= rand()%9;
-	for (int i=0; i<9; i++)
-		kulka[i]=0;
-	kulka[losowaKulka]=1;
+	int losowaKulka= rand()%sizeof(kulka);
+	kulka[losowaKulka] = 1;
+
 	PorownanieKulek (kulka);
 	return 0;
 }

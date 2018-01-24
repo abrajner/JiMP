@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-double SredniaWazona (int *poczatek, int *koniec)
+double SredniaWazona (const int *poczatek, const int *koniec)
 {
-	double suma=0.0, sredniaWazona=0.0;
+	double suma=0.0;
 	int i=0, sumaWag=0;
 	while (poczatek+i != koniec)
 	{
@@ -10,17 +10,17 @@ double SredniaWazona (int *poczatek, int *koniec)
 		sumaWag+=i;
 		i++;
 	}
-	sredniaWazona = suma/sumaWag;
+	double sredniaWazona = suma/sumaWag;
 	return 	sredniaWazona;
 }
 
 int main (void)
 {
-	int tablica[10]={45,53,2,6,3,57,32,5,3345,23};
-	double srednia=0;
-	int *wskpoczatek = &tablica[0];
-	int *wskkoniec = &tablica[10];
-	srednia =SredniaWazona(wskpoczatek, wskkoniec);
+	const int tablica[]={45,53,2,6,3,57,32,5,3345,23};
+	const int *wskpoczatek = &tablica[0];
+	const int *wskkoniec = &tablica[10];
+
+	double srednia = SredniaWazona(wskpoczatek, wskkoniec);
 	printf ("%lf\n", srednia);
 	return 0;
 }

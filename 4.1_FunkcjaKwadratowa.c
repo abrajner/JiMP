@@ -28,6 +28,7 @@ double JedenPierwiastek (double b, double a)
 int main (void)
 {
 	double a, b, c, x1, x2, x;
+
 	printf ("Podaj wspolczynniki a,b,c w rownianiu kwadratowym o postaci y = a*x^2+b*x+c\n");
 	printf ("a = ");
 	scanf ("%lf", &a);
@@ -38,7 +39,7 @@ int main (void)
 	while (a==0)
 	{
 		printf ("jesli a=0 nie jest to juz funkcja kwadratowa, wpisz wartosc a jeszcze raz\n");
-		scanf("%lf", a);
+		scanf("%lf", &a);
 	}
 	double delta=ObliczanieDelty(a,b,c);
 	if (delta==0)
@@ -57,5 +58,4 @@ int main (void)
 		printf ("rownanie ma dwa rozwiazania x1 = %lf oraz x2 = %lf\n", x1, x2);
 	}
 	return 0;
-	
 }

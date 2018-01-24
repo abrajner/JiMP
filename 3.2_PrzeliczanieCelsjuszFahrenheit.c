@@ -11,6 +11,7 @@ void FahrenheityNaCelsjusze(double stopnie)
 	double stopnieC=(stopnie-32)/1.8;
 	printf("%lf stopni Fahrenheita to %lf stopnie Celsjusza\n", stopnie, stopnieC);
 }
+
 int main (void)
 {
 	int jednostkaStopni;
@@ -31,7 +32,6 @@ int main (void)
 			printf ("cos wpisales zle\n");
 			break;
 	}
-
 	return 0;
 
 }

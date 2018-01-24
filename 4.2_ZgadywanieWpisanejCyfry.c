@@ -22,7 +22,6 @@ int ObliczanieCyfryPodanejPrzezUzytkownika (int CyfraPodanaPrzezUzytkownika)
 				printf("twoja cyfra to 6\n");
 			}
 		}
-	
 		else
 		{
 			if (CyfraPodanaPrzezUzytkownika==10)
@@ -66,9 +65,7 @@ int ObliczanieCyfryPodanejPrzezUzytkownika (int CyfraPodanaPrzezUzytkownika)
 				printf("twoja cyfra to 5\n");
 			}
 		}
-	
 	}
-	
 }
 int main (void)
 {
@@ -83,4 +80,5 @@ int main (void)
 	{	
 		ObliczanieCyfryPodanejPrzezUzytkownika (CyfraPodanaPrzezUzytkownika);
 	}
+	return 0;
 }

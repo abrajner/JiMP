@@ -34,6 +34,22 @@ void SortowanieTablicyB (int n, int *tablicaB[n])
 	}
 }
 
+void WyswietlanieTablicy (int n, int tablica[n])
+{
+	for (int i = 0; i<n; i++)
+	{
+		printf(" %d ", tablica[i]);
+	}
+}
+
+void WyswietlaniePosortowanejTablicy (int n, int *tablica[n])
+{
+	for (int i = 0; i<n; i++)
+	{
+		printf(" %d ", *tablica[i]);
+	}
+}
+
 int main (void)
 {
 	int n = 0;
@@ -42,21 +58,14 @@ int main (void)
 	int tablicaA[n];
 	int *tablicaB[n];
 	srand(time(NULL));
+
 	TworzenieTablicyA(n, tablicaA);
 	TworzenieTablicyB(n, tablicaA, tablicaB);
-	SortowanieTablicyB (n, tablicaB);
+	SortowanieTablicyB(n, tablicaB);
 
-	for (int i = 0; i<n; i++)
-	{
-		printf(" %d ", tablicaA[i]);
-	}
-	
+	WyswietlanieTablicy(n, tablicaA);
 	printf("\n");
-
-	for (int i = 0; i<n; i++)
-	{
-		printf(" %d ", *tablicaB[i]);
-	}
-
+	WyswietlaniePosortowanejTablicy(n, tablicaB);
 	printf("\n");	
+	return 0;
 }

@@ -1,20 +1,21 @@
 #include <stdio.h>
 #include <time.h>
 
-int SprawdzenieNumeruMiesiaca(int nrMsc, int rok)
+int IloscDniWMiesiacu(int nrMsc, int rok)
 {
 	if (nrMsc==1||nrMsc==3||nrMsc==5||nrMsc==7||nrMsc==8||nrMsc==10||nrMsc==12)
 		return 0;
 	else if (nrMsc==2)
 	{
-		if (rok%4==0)
+		if (rok%4==0 && (rok%100!=0 && rok%400==0))
 			return 1;
-		else 
-			return -1;
+		else
+			return 2;
 	}
 	
 }
-int WyswietlanieAktualnegoMiesiaca ()
+
+int AktualnyMiesiac()
 {
 	time_t czas;
 	time(&czas);
@@ -24,7 +25,7 @@ int WyswietlanieAktualnegoMiesiaca ()
 	return numerMiesiaca;
 }
 
-int SprawdzenieAktualnegoRoku()
+int AktualnyRok()
 {
 	time_t czas;
 	time(&czas);
@@ -35,7 +36,7 @@ int SprawdzenieAktualnegoRoku()
 
 void WypisanieDniMiesiaca(int nrMsc, int rok)
 {
-	if (SprawdzenieNumeruMiesiaca(nrMsc, rok)==0)
+	if (IloscDniWMiesiacu(nrMsc, rok)==0)
 	{
 		for (int i=1; i<32; i++)
 		{
@@ -45,7 +46,7 @@ void WypisanieDniMiesiaca(int nrMsc, int rok)
 		}
 		printf("\n");
 	}
-	else if (SprawdzenieNumeruMiesiaca(nrMsc, rok)==-1)
+	else if (IloscDniWMiesiacu(nrMsc, rok)==2)
 	{
 		for (int i=1; i<29; i++)
 		{
@@ -55,7 +56,7 @@ void WypisanieDniMiesiaca(int nrMsc, int rok)
 		}
 		printf("\n");
 	}
-	else if (SprawdzenieNumeruMiesiaca(nrMsc, rok)==1)
+	else if (IloscDniWMiesiacu(nrMsc, rok)==1)
 	{
 		for (int i=1; i<30; i++)
 		{
@@ -79,7 +80,7 @@ void WypisanieDniMiesiaca(int nrMsc, int rok)
 
 int main (void)
 {
-	int rok = SprawdzenieAktualnegoRoku();
-	int miesiac = WyswietlanieAktualnegoMiesiaca ();
+	int rok = AktualnyRok();
+	int miesiac = AktualnyMiesiac();
 	WypisanieDniMiesiaca(miesiac, rok);
 }

@@ -97,12 +97,13 @@ int LiczenieDominanty(int rozmiarTablicy, int* tablica)
 
 int SprawdzenieLiczbPoPrzecinku(double liczbaDoSprawdzenia)
 {
-	if ((int)liczbaDoSprawdzenia < liczbaDoSprawdzenia && (int)liczbaDoSprawdzenia > (liczbaDoSprawdzenia - 1))
-	{
-		return false;
-	}
-	else
-		return true;
+	return !(int)liczbaDoSprawdzenia < liczbaDoSprawdzenia && (int)liczbaDoSprawdzenia > (liczbaDoSprawdzenia - 1);
+}
+
+void ZamianaIWyswietlenieWatosci (const char* nazwa, double wartosc)
+{
+	wartosc = ((int)wartosc);
+	printf("%s %d %o %x\n", nazwa, (int)wartosc, (int)wartosc, (int)wartosc);
 }
 
 int main(void)
@@ -132,17 +133,17 @@ int main(void)
 	printf("Dominanta %d %o %x\n", dominanta, dominanta, dominanta);
 	if(SprawdzenieLiczbPoPrzecinku(srednia))
 	{
-		srednia = ((int)srednia);
-		printf("Srednia %d %o %x\n", (int)srednia, (int)srednia, (int)srednia);
+		ZamianaIWyswietlenieWatosci("Srednia", srednia);
 	}	
 	else
 		printf("Srednia %.1f\n", srednia);
 	if(SprawdzenieLiczbPoPrzecinku(mediana))
 	{
-		mediana = ((int)mediana);
-		printf("Mediana %d %o %x\n", (int)mediana, (int)mediana, (int)mediana);
+		ZamianaIWyswietlenieWatosci("Mediana", mediana);
 	}
 	else
 		printf("Mediana %.1f\n", mediana);
+	
+	free(tablica);
 	return 0;
 }
