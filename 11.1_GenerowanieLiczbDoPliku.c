@@ -16,6 +16,12 @@ int main(int argc, char **argv)
 	const char* nazwaPliku = argv[1];
 	FILE * plik = fopen(nazwaPliku, "w");
 
+	if(argc < 3)
+	{
+		printf("Nie wpisales wszystkich argumentow\n");
+		exit (-1);
+	}
+
 	srand(time(NULL));
 	char tablica[rozmiarTablicy];
 	GenerowanieTablicyZLiczbami(rozmiarTablicy, tablica);
