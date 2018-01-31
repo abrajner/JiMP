@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-long long copyArgumentAndPrintCharByCharReturningSumOfArguments(void* dane, size_t rozmiarDanych)
+long long copyArgumentAndPrintCharByCharReturningSumOfArguments(const void* dane, const size_t rozmiarDanych)
 {
 	long long suma = 0;
 	int liczbaElementow = rozmiarDanych/sizeof(char);
@@ -23,11 +23,11 @@ long long copyArgumentAndPrintCharByCharReturningSumOfArguments(void* dane, size
 
 int main(void)
 {
-	char a = 45;
+	const char a = 45;
 	printf("%lli \n", copyArgumentAndPrintCharByCharReturningSumOfArguments(&a, sizeof a));
-	int b = 12;
+	const int b = 12;
 	printf("%lli \n", copyArgumentAndPrintCharByCharReturningSumOfArguments(&b, sizeof b));
-	char c[] = "asdfghjjhgf";
+	const char c[] = "asdfghjjhgf";
 	printf("%lli \n", copyArgumentAndPrintCharByCharReturningSumOfArguments(&c, sizeof c));
 	return 0;
 }

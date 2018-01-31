@@ -2,11 +2,12 @@
 #include <time.h>
 #include <stdlib.h>
 
-void GenerowanieTablicyZLiczbami(int wielkoscTablicy, char tablica[wielkoscTablicy])
+void GenerowanieTablicyZLiczbami(int wielkoscTablicy, char tablica[wielkoscTablicy], FILE* plik)
 {
 	for(int i = 0; i<=wielkoscTablicy; i++)
   	{
     		tablica[i] = rand()%1000;
+		fprintf(plik, " %d ", tablica[i]);
   	}
 }
 
@@ -24,9 +25,8 @@ int main(int argc, char **argv)
 
 	srand(time(NULL));
 	char tablica[rozmiarTablicy];
-	GenerowanieTablicyZLiczbami(rozmiarTablicy, tablica);
+	GenerowanieTablicyZLiczbami(rozmiarTablicy, tablica, plik);
 
-	fprintf(plik, "%s", tablica);
 	fclose(plik);
 	return 0;
 }

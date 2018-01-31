@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <math.h>
 
-void WyswietlanieZnaku(void* argument, unsigned szerokoscLinii)
+void WyswietlanieZnaku(void* argument, const unsigned szerokoscLinii)
 {
 	char wyswietlanyZnak = *(char*)argument;
 	if(isprint(wyswietlanyZnak) == 0)
@@ -19,7 +19,7 @@ void WyswietlanieZnaku(void* argument, unsigned szerokoscLinii)
 		printf("%*c%c\n", (((szerokoscLinii)/2)-1),' ', wyswietlanyZnak);
 }
 
-void WyswietlanieNapisu(void* argument, unsigned szerokoscLinii)
+void WyswietlanieNapisu(void* argument, const unsigned szerokoscLinii)
 {
 	char* wyswietlanyNapis = *(char**)argument;
 	int dlugoscArgumentu = strlen(wyswietlanyNapis);
@@ -32,7 +32,7 @@ void WyswietlanieNapisu(void* argument, unsigned szerokoscLinii)
 		printf("%*c%s\n", ((szerokoscLinii-dlugoscArgumentu)/2), ' ', wyswietlanyNapis);
 }
 
-void WyswietlanieLiczby(void* argument, unsigned szerokoscLinii)
+void WyswietlanieLiczby(void* argument, const unsigned szerokoscLinii)
 {
 	int wyswietlanaLiczba = *(int*)argument;
 	int dlugoscArgumentu = (int)log10(wyswietlanaLiczba);
@@ -45,7 +45,7 @@ void WyswietlanieLiczby(void* argument, unsigned szerokoscLinii)
 		printf("%*c%d\n", ((szerokoscLinii-dlugoscArgumentu)/2), ' ', wyswietlanaLiczba);
 }
 
-void WyswietlanieLiczbyZmiennoprzecinkowej(void* argument, unsigned szerokoscLinii)
+void WyswietlanieLiczbyZmiennoprzecinkowej(void* argument, const unsigned szerokoscLinii)
 {
 	double wyswietlanaLiczba = *(double*)argument;
 	int dlugoscArgumentu = (int)log10(wyswietlanaLiczba);
@@ -87,7 +87,7 @@ void WyswietlanieLiczbyZmiennoprzecinkowej(void* argument, unsigned szerokoscLin
 		printf("%*c%.*f\n", ((szerokoscLinii-dlugoscArgumentu)/2-1), ' ', miejscaPoPrzecinku, wyswietlanaLiczba);
 }
 
-int WyswietlanieArgumentuNaSrodku(void* argument, char* typDanych, unsigned szerokoscLinii)
+int WyswietlanieArgumentuNaSrodku(void* argument, const char* typDanych, const unsigned szerokoscLinii)
 {
 	if(argument == 0)
 	{
@@ -118,7 +118,7 @@ int main(void)
 	char* napis = "asdfghjhytrew";
 	int liczba = 2345;
 	double liczbaZP = 2344.5678;
-	unsigned dlugosc = 30;
+	const unsigned dlugosc = 30;
 	WyswietlanieArgumentuNaSrodku(&znak, "znak", dlugosc);
 	WyswietlanieArgumentuNaSrodku(&napis, "napis", dlugosc);
 	WyswietlanieArgumentuNaSrodku(&liczba, "liczba", dlugosc);
