@@ -1,27 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void WyswietlPosortowanaTablice(int rozmiar, int tablica[rozmiar])
-{
-	for(int i = 0; i<rozmiar; i++)
-	{
-		printf(" %d ", tablica[i]);
-	}
-}
-
-void SortowanieTablicy(int rozmiar, int tablica[rozmiar])
+void WyswietlPosortowanaTablice(int rozmiar, int iloscWystapienLiczby[rozmiar])
 {
 	for(int i = 0; i < rozmiar; i++)
 	{
-		for(int j = 0; j < rozmiar; j++)
-		{
-			if (tablica[i] < tablica[j])
-			{
-				int tmp = tablica[j];
-				tablica[j] = tablica[i];
-				tablica[i] = tmp;
-			}
-		}
+		if (iloscWystapienLiczby[i] != 0)
+			for(int j = 1; j <= iloscWystapienLiczby[i]; j++)
+				printf(" %d ", i);
+	}
+}
+
+void SortowanieTablicy(int element, int iloscWystapienLiczby[1001])
+{
+	for(int i = 0; i < 1002; i++)
+	{
+		if(element == i)
+			iloscWystapienLiczby[i] += 1; 
 	}
 }
 
@@ -29,10 +24,10 @@ int main (int argc, char** argv)
 {
 	const char* nazwaPlikuWejsciowego = argv[1];
 	FILE* plikWejsciowy = fopen(nazwaPlikuWejsciowego, "r");
-
-	int rozmiar = 100;
-	int tablica[rozmiar];
-	char liczba[1001];
+	int iloscWystapienLiczby[1001] = {0};
+	int rozmiar = 10;
+	int* tablica = malloc(sizeof(int)*rozmiar);
+	char liczba[4];
 	int element = 0, licznik = 1;
 	
 	if(plikWejsciowy == NULL)
@@ -44,16 +39,15 @@ int main (int argc, char** argv)
 	while(fscanf(plikWejsciowy, "%s", liczba) != EOF)
 	{
 		tablica[element] = strtol(liczba, NULL, 10);
+		SortowanieTablicy(tablica[element], iloscWystapienLiczby);
 		element++;
 		licznik++;
+		tablica = realloc(tablica, sizeof(int)*licznik);
 	}
-
-	//tablica = realloc(tablica, sizeof(int)*licznik)
-	SortowanieTablicy(licznik, tablica);
 
 	if(argc == 2)
 	{
-		WyswietlPosortowanaTablice(licznik, tablica);
+		WyswietlPosortowanaTablice(1001, iloscWystapienLiczby);
 	}
 	else if(argc == 3)
 	{
