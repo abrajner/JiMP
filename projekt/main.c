@@ -10,7 +10,9 @@ int main(void)
 	printf("\nKalkulator macierzy\n\n");
 	int kolumnyPierwszej = 0, kolumnyDrugiej = 0, wierszePierwszej = 0 , wierszeDrugiej = 0;
 	int* adresWierszePierwszej = &wierszePierwszej, *adresKolumnyPierwszej = &kolumnyPierwszej, *adresKolumnyDrugiej = &kolumnyDrugiej, *adresWierszeDrugiej = &wierszeDrugiej;
-	int pierwszyWybor = WypisanieMenuPierwszego(), drugiWybor = WypisanieMenuDrugiego();
+	int pierwszyWybor = WypisanieMenuPierwszego(), drugiWybor = 0;
+	if(pierwszyWybor<6)
+		drugiWybor = WypisanieMenuDrugiego();
 	int macierzPierwsza[wierszePierwszej][kolumnyPierwszej], macierzDruga[wierszeDrugiej][kolumnyDrugiej];
 	
 	switch(pierwszyWybor)
@@ -67,6 +69,7 @@ int main(void)
 			MacierzTransponowana(kolumnyPierwszej, wierszePierwszej, macierzPierwsza);
 			break;
 		case 7:
+			break;
 			return 0;
 		default:
 			printf("Podales zly numer");
